@@ -33,15 +33,19 @@ namespace Microsoft.Extensions.Http
         {
             private static readonly Func<ObjectFactory> _createActivator = () => ActivatorUtilities.CreateFactory(typeof(TClient), new Type[] { typeof(HttpClient), });
 
-            private ObjectFactory _activator;
+            private ObjectFactory? _activator;
             private bool _initialized;
-            private object _lock;
+            private object? _lock;
 
+            // [MemberNotNull(nameof(_activator))]
+            // [MemberNotNull(nameof(_initialized))]
+            // [MemberNotNull(nameof(_lock))]
+            // [MemberNotNull(nameof(_createActivator))]
             public ObjectFactory Activator => LazyInitializer.EnsureInitialized(
                 ref _activator,
                 ref _initialized,
                 ref _lock,
-                _createActivator);
+                _createActivator)!;
         }
     }
 }

@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 
 namespace Microsoft.Extensions.Http
@@ -14,9 +15,9 @@ namespace Microsoft.Extensions.Http
             Services = services;
         }
 
-        private string _name;
+        private string? _name;
 
-        public override string Name
+        public override string? Name
         {
             get => _name;
             set

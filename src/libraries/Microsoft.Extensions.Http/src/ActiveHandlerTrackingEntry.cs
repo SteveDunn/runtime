@@ -13,11 +13,11 @@ namespace Microsoft.Extensions.Http
     // for the 'expiry' pool simplifies the threading requirements significantly.
     internal sealed class ActiveHandlerTrackingEntry
     {
-        private static readonly TimerCallback _timerCallback = (s) => ((ActiveHandlerTrackingEntry)s).Timer_Tick();
+        private static readonly TimerCallback _timerCallback = (s) => ((ActiveHandlerTrackingEntry)s!).Timer_Tick();
         private readonly object _lock;
         private bool _timerInitialized;
-        private Timer _timer;
-        private TimerCallback _callback;
+        private Timer? _timer;
+        private TimerCallback? _callback;
 
         public ActiveHandlerTrackingEntry(
             string name,
